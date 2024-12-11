@@ -3,10 +3,9 @@
 #include "Globals.h"
 #include "Renderer.h"
 #include "InputManager.h"
-#include "SDLClasses.h"
-#include "SDL.h"
 #include "ObjectBase.h"
 
+#include "SDL.h"
 
 
 void Engine::Update()
@@ -36,7 +35,7 @@ void Engine::Init()
 		return;
 	}
 	SDL_Init(SDL_INIT_EVERYTHING);
-	m_Objects.reserve(Globals::MAX_OBJECTS);	
+	m_Objects.reserve(Globals::ESTIMATED_AMT_OF_OBJECTS);
 	// creates classes if they dont already exist
 	Renderer::Get();
 	InputManager::Get();
@@ -62,13 +61,15 @@ void Engine::AddObject(ObjectBase* obj)
 
 void Engine::DeleteObject(ObjectBase* obj)
 {
-	for (ObjectBase* CurrObj : m_Objects)
+	for (int i = 0; i < m_Objects.size(); ++i)
 	{
-		if (CurrObj == obj)
+		if (obj == m_Objects[i])
 		{
-			// DELETE CODE HERE
+			m_Objects.erase(m_Objects.begin() + i);
+			break;
 		}
 	}
+	delete obj;
 }
 
 std::vector<ObjectBase*> Engine::GetAllCollisionsWith(ObjectBase* Obj)

@@ -1,13 +1,16 @@
 #pragma once
 #include "Globals.h"
 #include <map>
-class SDL_Texture; class Image; class SDL_Rect;
+class SDL_Texture; class Image; class SDL_Rect; class ObjectBase;
 class Renderer
 {
 public:
 	static Renderer* Get();
 	Image* AddImage(const char* Path);
-	void DrawImage(Image* img, SDL_Rect* rect);
+	void DrawImage(Image* img, SDL_Rect* rect, int YOffset = 0);
+	ObjectBase* CameraCentre;
+	void SetCamera(ObjectBase* centre);
+
 
 private:
 	Renderer();

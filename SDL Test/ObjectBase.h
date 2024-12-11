@@ -10,16 +10,18 @@ class Image;
 class ObjectBase
 {
 public:
-	ObjectBase();
+	ObjectBase(SDL_Rect pos = { 0, 0, 320, 320 });
 	virtual void Update() = 0;
-	void Render();
+	virtual void Render();
 	virtual const char* GetName() = 0;
 	void SetImage(const char* Path);
 	bool CollisionEnabled;
 	SDL_Rect* GetPosition();
+	SDL_Rect rect;
 
 protected:
+	int CameraOffset;
 	Image* m_img;
-	SDL_Rect m_Position;
+	
 };
 

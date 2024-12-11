@@ -1,11 +1,10 @@
 #include "SDLClasses.h"
 #include "Globals.h"
+
 #include "SDL.h"
 
 SDL_Window* SDLClasses::s_Window = nullptr;
 SDL_Renderer* SDLClasses::s_Renderer = nullptr;
-
-
 
 SDL_Window* SDLClasses::GetWindow()
 {

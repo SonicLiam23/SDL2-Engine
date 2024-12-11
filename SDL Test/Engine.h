@@ -14,6 +14,7 @@ class ObjectBase;
 * handle collisions
 *
 */
+#include "SDLClasses.h"
 
 
 class Engine
@@ -37,7 +38,6 @@ public:
 	std::vector<ObjectBase*> GetAllCollisionsWith(ObjectBase* Obj);
 	// returns true if the 2 objects are colliding
 	bool IsColliding(ObjectBase* obj1, ObjectBase* obj2);
-
 };
 
 

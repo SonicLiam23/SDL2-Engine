@@ -1,15 +1,16 @@
 #include "ObjectBase.h"
 #include "Renderer.h"
 
-ObjectBase::ObjectBase() : m_img(nullptr), m_Position({0, 0, 320, 320}), CollisionEnabled(true)
+ObjectBase::ObjectBase(SDL_Rect pos) : m_img(nullptr), rect(pos), CollisionEnabled(true)
 {
+
 }
 
 void ObjectBase::Render()
 {
 	if (m_img != nullptr)
 	{
-		Renderer::Get()->DrawImage(m_img, &m_Position);
+		Renderer::Get()->DrawImage(m_img, &rect);
 	}
 }
 
@@ -20,5 +21,5 @@ void ObjectBase::SetImage(const char* Path)
 
 SDL_Rect* ObjectBase::GetPosition()
 {
-	return &m_Position;
+	return &rect;
 }
