@@ -55,6 +55,9 @@ int main(int argc, char* argv[])
 		e.Update();
 		for (ObjectBase* OB : e.GetAllCollisionsWith(&p))
 		{
+			std::cout << OB->GetName();
+
+
 			if (OB->GetName() == "Enemy")
 			{
 				e.DeleteObject(OB);

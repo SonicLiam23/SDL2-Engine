@@ -4,6 +4,7 @@
 #include "Renderer.h"
 #include "InputManager.h"
 #include "ObjectBase.h"
+#include <cmath>
 
 #include "SDL.h"
 
@@ -95,6 +96,11 @@ bool Engine::IsColliding(ObjectBase* obj1, ObjectBase* obj2)
 		return false;
 	}
 
+	if (obj1 == obj2)
+	{
+		return false;
+	}
+
 	SDL_Rect* rect1 = obj1->GetPosition();
 	SDL_Rect* rect2 = obj2->GetPosition();
 
@@ -140,5 +146,32 @@ bool Engine::IsColliding(ObjectBase* obj1, ObjectBase* obj2)
 
 	//If none of the sides from A are outside B
 	return true;
+}
+
+ObjectBase* Engine::GetClosestObject(ObjectBase* obj)
+{
+	float closestDistance = INT_MAX;
+	ObjectBase* closestObject = nullptr;
+	for (ObjectBase* currObj : m_Objects)
+	{
+		if (obj != currObj)
+		{
+			int dX;
+			int dY;
+			dX = obj->rect.x - currObj->rect.x;
+			dY = obj->rect.y - currObj->rect.y;
+
+			float hyp;
+			hyp = (dX * dX) + (dY * dY);
+			hyp = std::sqrt(hyp);
+
+			if (hyp < closestDistance)
+			{
+				closestObject = currObj;
+			}
+		}
+	}
+
+	return closestObject;
 }
 
