@@ -16,18 +16,21 @@
     <Filter Include="Header Files\Engine">
       <UniqueIdentifier>{e1a488bc-0746-40a4-aad3-8e1bdff6976f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Engine">
-      <UniqueIdentifier>{8b937f35-c9a4-454a-ae61-7fb670356eb0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Engine\Object">
       <UniqueIdentifier>{c6721dec-f28a-4c19-8737-20721e9e8e12}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine">
+      <UniqueIdentifier>{60be6ef7-eb44-4424-9504-994fab3205c6}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\Engine\Object">
-      <UniqueIdentifier>{078137bf-dcce-4d1b-9bf7-5f10d1f8ab42}</UniqueIdentifier>
+      <UniqueIdentifier>{bc81d83a-0707-41c7-b026-194db927c08c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Engine.cpp">
@@ -36,8 +39,8 @@
     <ClCompile Include="InputManager.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Source Files\Engine</Filter>
     </ClCompile>
     <ClCompile Include="SDLClasses.cpp">
       <Filter>Source Files\Engine</Filter>
@@ -47,21 +50,6 @@
     </ClCompile>
     <ClCompile Include="ObjectBase.cpp">
       <Filter>Source Files\Engine\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Coin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="img.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tower.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -88,18 +76,6 @@
     </ClInclude>
     <ClInclude Include="Renderer.h">
       <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Coin.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="img.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tower.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

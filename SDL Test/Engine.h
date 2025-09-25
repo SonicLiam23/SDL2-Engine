@@ -22,8 +22,6 @@ class Engine
 private:
 	bool m_Running;
 	std::vector<ObjectBase*> m_Objects;
-	//SDL_Renderer* s_Renderer;
-	//SDL_Window* s_Window;
 
 public:
 	void Update();

@@ -10,13 +10,4 @@ public:
 	const char* GetName() override;
 	void Render() override;
 	void Damage(int dmg);
-	const int GetCoins();
-	void AddCoin();
-	const bool GetWallStatus();
-	const bool GetFarmStatus();
-
-private:
-	int m_Coins;
-	bool m_isWallUp;
-	bool m_isFarmUp;
 };
