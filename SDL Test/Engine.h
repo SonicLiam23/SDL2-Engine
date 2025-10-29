@@ -16,7 +16,7 @@ class ObjectBase;
 */
 #include "SDLClasses.h"
 
-
+class SDL_Rect;
 class Engine
 {
 private:
@@ -35,6 +35,8 @@ public:
 	// Returns every object that is colliding with it as a vector
 	std::vector<ObjectBase*> GetAllCollisionsWith(ObjectBase* Obj);
 	// returns true if the 2 objects are colliding
+	bool IsColliding(SDL_Rect* obj1, SDL_Rect* obj2);
+	bool IsColliding(ObjectBase* obj1, SDL_Rect* obj2);
 	bool IsColliding(ObjectBase* obj1, ObjectBase* obj2);
 
 	// Gets the closest Object to the object passed in

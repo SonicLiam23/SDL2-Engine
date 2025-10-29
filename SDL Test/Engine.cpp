@@ -89,64 +89,21 @@ std::vector<ObjectBase*> Engine::GetAllCollisionsWith(ObjectBase* Obj)
 	return ReturnVector;
 }
 
+bool Engine::IsColliding(SDL_Rect* obj1, SDL_Rect* obj2)
+{
+	return SDL_HasIntersection(obj1, obj2);
+}
+
+bool Engine::IsColliding(ObjectBase* obj1, SDL_Rect* obj2)
+{
+	return IsColliding(obj1->GetPosition(), obj2);
+}
+
 bool Engine::IsColliding(ObjectBase* obj1, ObjectBase* obj2)
 {
-	if (!obj1->CollisionEnabled || !obj2->CollisionEnabled)
-	{
-		return false;
-	}
-
-	if (obj1 == obj2)
-	{
-		return false;
-	}
-
-	SDL_Rect* rect1 = obj1->GetPosition();
-	SDL_Rect* rect2 = obj2->GetPosition();
-
-
-	//The sides of the rectangles
-	int leftA, leftB;
-	int rightA, rightB;
-	int topA, topB;
-	int bottomA, bottomB;
-
-	//Calculate the sides of rect A
-	leftA = rect1->x;
-	rightA = rect1->x + rect1->w;
-	topA = rect1->y;
-	bottomA = rect1->y + rect1->h;
-
-	//Calculate the sides of rect B
-	leftB = rect2->x;
-	rightB = rect2->x + rect2->w;
-	topB = rect2->y;
-	bottomB = rect2->y + rect2->h;
-
-	//If any of the sides from A are outside of B
-	if (bottomA <= topB)
-	{
-		return false;
-	}
-
-	if (topA >= bottomB)
-	{
-		return false;
-	}
-
-	if (rightA <= leftB)
-	{
-		return false;
-	}
-
-	if (leftA >= rightB)
-	{
-		return false;
-	}
-
-	//If none of the sides from A are outside B
-	return true;
+	return IsColliding(obj1->GetPosition(), obj2->GetPosition());
 }
+
 
 ObjectBase* Engine::GetClosestObject(ObjectBase* obj)
 {
