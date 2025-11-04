@@ -10,6 +10,7 @@ private:
 
 public:
 	void LogText(std::string text);
+	void LogText(const char* text);
 	static Log* Get();
 };
 

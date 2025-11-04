@@ -25,4 +25,9 @@ const char* Player::GetName()
     return "Player";
 }
 
+void Player::OnClick()
+{
+    std::cout << "Click";
+}
+
 

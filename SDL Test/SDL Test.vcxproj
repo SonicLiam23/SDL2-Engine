@@ -83,7 +83,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>.\lib\x86</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib; SDL2main.lib; $(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -117,7 +117,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>.\lib\x64</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib; SDL2main.lib; $(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -143,6 +143,7 @@
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Image.cpp" />
+    <ClCompile Include="ImageObject.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
@@ -150,19 +151,25 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="SDLClasses.cpp" />
+    <ClCompile Include="Text.cpp" />
+    <ClCompile Include="TextObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Image.h" />
+    <ClInclude Include="ImageObject.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="ObjectBase.h" />
+    <ClInclude Include="Objects.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="SDLClasses.h" />
+    <ClInclude Include="Text.h" />
+    <ClInclude Include="TextObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

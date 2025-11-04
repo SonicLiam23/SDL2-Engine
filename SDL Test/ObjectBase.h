@@ -12,17 +12,15 @@ class ObjectBase
 public:
 	ObjectBase(Rect pos = { 0, 0, 320, 320 });
 	virtual void Update() {}
-	virtual void Render();
+	virtual void Render() = 0;
 	virtual const char* GetName() = 0;
 	virtual void OnClick() {}
-	void SetImage(const char* Path);
 	bool CollisionEnabled;
 	Rect* GetPosition();
 	Rect rect;
 
 protected:
 	int CameraOffset;
-	Image* m_img;
-	
+
 };
 

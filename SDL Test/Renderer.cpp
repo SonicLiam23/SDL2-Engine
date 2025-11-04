@@ -2,7 +2,10 @@
 #include "Globals.h"
 #include "SDLCLasses.h"
 #include "Image.h"
+#include "Text.h"
 #include "ObjectBase.h"
+
+#include "SDL_ttf.h"
 #include "SDL.h"
 
 Renderer* Renderer::s_instance = nullptr;
@@ -22,7 +25,14 @@ Image* Renderer::AddImage(const char* Path)
     return m_StoredImages.at(Path);
 }
 
-void Renderer::DrawImage(Image* img, Rect* rect, int YOffset)
+TTF_Font* Renderer::AddFont(const char* path, int size)
+{
+    std::pair<const char*, int> key = { path, size };
+    m_StoredFonts.insert({ key, TTF_OpenFont(path, size) });
+    return m_StoredFonts.at(key);
+}
+
+void Renderer::DrawObject(SDL_Texture* img, Rect* rect, int YOffset)
 {
     SDL_Rect temp = rect->TryParse<SDL_Rect>();
     float OffsetX = rect->w / 2;
@@ -33,7 +43,7 @@ void Renderer::DrawImage(Image* img, Rect* rect, int YOffset)
         temp.y += (Globals::HALF_SCREEN_HEIGHT - CameraCentre->rect.y - OffsetY);
     }
    
-	SDL_RenderCopy(SDLClasses::GetRenderer(), img->GetTexture(), NULL, &temp);
+	SDL_RenderCopy(SDLClasses::GetRenderer(), img, NULL, &temp);
 }
 
 void Renderer::SetCamera(ObjectBase* centre)

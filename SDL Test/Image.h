@@ -1,5 +1,5 @@
 #pragma once
-class SDL_Texture; class SDL_Renderer;
+class SDL_Texture;// class SDL_Renderer;
 class Image
 {
 public:

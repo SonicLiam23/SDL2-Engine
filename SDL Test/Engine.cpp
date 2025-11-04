@@ -6,6 +6,7 @@
 #include "ObjectBase.h"
 #include <cmath>
 #include "Rect.h"
+#include "SDL_ttf.h"
 #include "SDL.h"
 
 Engine* Engine::s_Instance = nullptr;
@@ -46,6 +47,7 @@ void Engine::Init()
 		return;
 	}
 	SDL_Init(SDL_INIT_EVERYTHING);
+	TTF_Init();
 	m_Objects.reserve(Globals::ESTIMATED_AMT_OF_OBJECTS);
 	// creates classes if they dont already exist
 	Renderer::Get();

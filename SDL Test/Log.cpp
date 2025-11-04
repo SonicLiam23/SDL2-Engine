@@ -13,6 +13,12 @@ void Log::LogText(std::string text)
 	*file << text << "\n";
 }
 
+void Log::LogText(const char* text)
+{
+    std::cout << text << std::endl;
+    *file << text << "\n";
+}
+
 Log* Log::Get()
 {
 	return (s_Instance == nullptr ? s_Instance = new Log() : s_Instance);

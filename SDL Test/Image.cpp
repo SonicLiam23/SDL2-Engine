@@ -1,6 +1,4 @@
 #include "Image.h"
-//#include "SDL_surface.h"
-//#include "SDL_render.h"
 #include "SDLClasses.h"
 #include "SDL.h"
 #include <iostream>

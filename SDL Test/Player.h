@@ -1,5 +1,5 @@
 #pragma once
-#include "ObjectBase.h"
+#include "ImageObject.h"
 
 enum Buttons
 {
@@ -11,7 +11,7 @@ enum Buttons
 };
 
 
-class Player : public ObjectBase
+class Player : public ImageObject
 {
 public:
 	Player();
@@ -19,4 +19,5 @@ public:
 	// Inherited via ObjectBase
 	void Update() override;
 	const char* GetName() override;
+	void OnClick() override;
 };
