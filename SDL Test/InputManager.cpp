@@ -1,4 +1,10 @@
 #include "InputManager.h"
+#include "SDL_events.h"
+#include <cctype>
+#include "Engine.h"
+#include "Cursor.h"
+#include "Rect.h"
+
 InputManager* InputManager::s_Instance = nullptr;
 
 InputManager::InputManager() : NewScanCode(SDL_SCANCODE_UNKNOWN)
@@ -30,40 +36,63 @@ void InputManager::Update()
 		}
 	}
 
-	while (SDL_PollEvent(&Event))
-	{
-		SDL_Scancode NewScanCode = SDL_GetScancodeFromKey(Event.key.keysym.sym);
+    while (SDL_PollEvent(&Event))
+    {
+        SDL_Scancode NewScanCode = SDL_GetScancodeFromKey(Event.key.keysym.sym);
 
+        // Keyboard inputs
+        if (Event.type == SDL_KEYDOWN)
+        {
+            if (m_PressedKeys[NewScanCode] == NONE)
+            {
+                m_PressedKeys[NewScanCode] = DOWN;
+            }
+        }
+        else if (Event.type == SDL_KEYUP)
+        {
+            m_PressedKeys[NewScanCode] = UP;
+        }
 
-		if (Event.type == SDL_KEYDOWN)
-		{
-			if (m_PressedKeys[NewScanCode] == NONE)
-			{
-				m_PressedKeys[NewScanCode] = DOWN;
-			}
-		}
-		else if (Event.type == SDL_KEYUP)
-		{
-			m_PressedKeys[NewScanCode] = UP;
-		}
-	}
+        // Mouse clicks
+        else if (Event.type == SDL_MOUSEBUTTONDOWN)
+        {
+            if (Event.button.button == SDL_BUTTON_LEFT)
+            {
+                int x = Event.button.x;
+                int y = Event.button.y;
+
+                Rect clickRect = { x, y, 3, 3 };
+                Cursor::DoClick(&clickRect);
+            }
+        }
+
+        // quit
+        else if (Event.type == SDL_QUIT)
+        {
+            Engine::Get()->Uninit();
+        }
+    }
 }
 
-bool InputManager::GetKeyUp(SDL_Keycode Key) const
+bool InputManager::GetKeyUp(char Key) const
 {
-	SDL_Scancode Scan = SDL_GetScancodeFromKey(Key);
-	return m_PressedKeys[Scan] == UP;
+	return m_PressedKeys[Get()->GetScancodeFromChar(Key)] == UP;
 }
 
-bool InputManager::GetKeyDown(SDL_Keycode Key) const 
+bool InputManager::GetKeyDown(char Key) const 
 {
-	SDL_Scancode Scan = SDL_GetScancodeFromKey(Key);
-	return m_PressedKeys[Scan] == DOWN;
+	return m_PressedKeys[Get()->GetScancodeFromChar(Key)] == DOWN;
 }
 
-bool InputManager::GetKeyHeld(SDL_Keycode Key) const
+bool InputManager::GetKeyHeld(char Key) const
 {
-	SDL_Scancode Scan = SDL_GetScancodeFromKey(Key);
-	return m_PressedKeys[Scan] == HELD;
+	return m_PressedKeys[Get()->GetScancodeFromChar(Key)] == HELD;
+}
+
+SDL_Scancode InputManager::GetScancodeFromChar(char key)
+{
+	key = static_cast<char>(std::tolower(key));
+	SDL_KeyCode keycode = static_cast<SDL_KeyCode>(key);
+	return SDL_GetScancodeFromKey(keycode);
 }
 

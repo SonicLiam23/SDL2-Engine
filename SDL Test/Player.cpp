@@ -5,17 +5,16 @@
 
 Player::Player()
 {
-    // CHANGE THIS WHEN NEEDED
-    CameraOffset = -160;
+    SetImage("Player.bmp");
 }
 
 void Player::Update()
 {
-    if (InputManager::Get()->GetKeyHeld(SDLK_d))
+    if (InputManager::Get()->GetKeyHeld('d'))
     {
         rect.x += 3;
     }
-    if (InputManager::Get()->GetKeyHeld(SDLK_a))
+    if (InputManager::Get()->GetKeyHeld('a'))
     {
         rect.x -= 3;
     }
@@ -24,14 +23,6 @@ void Player::Update()
 const char* Player::GetName()
 {
     return "Player";
-}
-
-void Player::Render()
-{
-    if (m_img != nullptr)
-    {
-        Renderer::Get()->DrawImage(m_img, &rect, CameraOffset);
-    }
 }
 
 

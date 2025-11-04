@@ -24,7 +24,7 @@
     <ProjectGuid>{da1bdf81-5179-46c7-a932-f4abda0f556f}</ProjectGuid>
     <RootNamespace>SDLTest</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>SDL intro 2</ProjectName>
+    <ProjectName>SDL2 Engine</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -140,9 +140,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ObjectBase.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -150,12 +152,15 @@
     <ClCompile Include="SDLClasses.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cursor.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Log.h" />
     <ClInclude Include="ObjectBase.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Rect.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="SDLClasses.h" />
   </ItemGroup>

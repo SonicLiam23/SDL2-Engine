@@ -1,5 +1,5 @@
 #pragma once
-#include "SDL_rect.h"
+#include "Rect.h"
 class Image;
 /*
 * Base for the objects
@@ -10,14 +10,15 @@ class Image;
 class ObjectBase
 {
 public:
-	ObjectBase(SDL_Rect pos = { 0, 0, 320, 320 });
-	virtual void Update() = 0;
+	ObjectBase(Rect pos = { 0, 0, 320, 320 });
+	virtual void Update() {}
 	virtual void Render();
 	virtual const char* GetName() = 0;
+	virtual void OnClick() {}
 	void SetImage(const char* Path);
 	bool CollisionEnabled;
-	SDL_Rect* GetPosition();
-	SDL_Rect rect;
+	Rect* GetPosition();
+	Rect rect;
 
 protected:
 	int CameraOffset;

@@ -1,23 +1,20 @@
-#include <iostream>
 #include "Engine.h"
 #include "Player.h"
-#include "Renderer.h"
-#include "InputManager.h"
 
 
 class Object {};
 int main(int argc, char* argv[])
 {
-	Engine e;
-	e.Init();
-	Player p;
-	Renderer::Get();
+	Engine* e = Engine::Get();
+	e->Init();
+	Player* p = new Player;
 
+	e->AddObject(p);
 
-	e.Start();
-	while (e.IsGameRunning())
+	e->Start();
+	while (e->IsGameRunning())
 	{
-		e.Update();
+		e->Update();
 	}
 
 	return 0;

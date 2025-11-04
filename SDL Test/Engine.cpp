@@ -5,9 +5,19 @@
 #include "InputManager.h"
 #include "ObjectBase.h"
 #include <cmath>
-
+#include "Rect.h"
 #include "SDL.h"
 
+Engine* Engine::s_Instance = nullptr;
+Engine* Engine::Get()
+{
+	return (s_Instance != nullptr) ? s_Instance : s_Instance = new Engine();
+}
+
+Engine::Engine() : m_Running(false)
+{
+
+}
 
 void Engine::Update()
 {
@@ -73,6 +83,20 @@ void Engine::DeleteObject(ObjectBase* obj)
 	delete obj;
 }
 
+void Engine::ClickAt(Rect* pos)
+{
+	for (ObjectBase* CurrObj : m_Objects)
+	{
+		if (CurrObj->CollisionEnabled)
+		{
+			if (IsColliding(CurrObj, pos))
+			{
+				CurrObj->OnClick();
+			}
+		}
+	}
+}
+
 std::vector<ObjectBase*> Engine::GetAllCollisionsWith(ObjectBase* Obj)
 {
 	std::vector<ObjectBase*> ReturnVector;
@@ -89,19 +113,21 @@ std::vector<ObjectBase*> Engine::GetAllCollisionsWith(ObjectBase* Obj)
 	return ReturnVector;
 }
 
-bool Engine::IsColliding(SDL_Rect* obj1, SDL_Rect* obj2)
+bool Engine::IsColliding(Rect* obj1, Rect* obj2)
 {
-	return SDL_HasIntersection(obj1, obj2);
+	SDL_Rect rect1 = obj1->TryParse<SDL_Rect>();
+	SDL_Rect rect2 = obj2->TryParse<SDL_Rect>();
+	return SDL_HasIntersection(&rect1, &rect2);
 }
 
-bool Engine::IsColliding(ObjectBase* obj1, SDL_Rect* obj2)
+bool Engine::IsColliding(ObjectBase* obj1, Rect* obj2)
 {
-	return IsColliding(obj1->GetPosition(), obj2);
+	return obj1->CollisionEnabled && IsColliding(obj1->GetPosition(), obj2);
 }
 
 bool Engine::IsColliding(ObjectBase* obj1, ObjectBase* obj2)
 {
-	return IsColliding(obj1->GetPosition(), obj2->GetPosition());
+	return obj1->CollisionEnabled && obj2->CollisionEnabled && IsColliding(obj1->GetPosition(), obj2->GetPosition());
 }
 
 

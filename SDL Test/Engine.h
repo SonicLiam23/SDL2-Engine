@@ -16,14 +16,18 @@ class ObjectBase;
 */
 #include "SDLClasses.h"
 
-class SDL_Rect;
+struct Rect;
 class Engine
 {
 private:
 	bool m_Running;
 	std::vector<ObjectBase*> m_Objects;
+	static Engine* s_Instance;
+	Engine();
 
 public:
+	static Engine* Get();
+
 	void Update();
 	const bool IsGameRunning() const;
 	void Init();
@@ -32,11 +36,12 @@ public:
 	void AddObject(ObjectBase* obj);
 	void DeleteObject(ObjectBase* obj);
 
+	void ClickAt(Rect* pos);
 	// Returns every object that is colliding with it as a vector
 	std::vector<ObjectBase*> GetAllCollisionsWith(ObjectBase* Obj);
 	// returns true if the 2 objects are colliding
-	bool IsColliding(SDL_Rect* obj1, SDL_Rect* obj2);
-	bool IsColliding(ObjectBase* obj1, SDL_Rect* obj2);
+	bool IsColliding(Rect* obj1, Rect* obj2);
+	bool IsColliding(ObjectBase* obj1, Rect* obj2);
 	bool IsColliding(ObjectBase* obj1, ObjectBase* obj2);
 
 	// Gets the closest Object to the object passed in

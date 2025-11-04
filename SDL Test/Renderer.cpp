@@ -22,9 +22,9 @@ Image* Renderer::AddImage(const char* Path)
     return m_StoredImages.at(Path);
 }
 
-void Renderer::DrawImage(Image* img, SDL_Rect* rect, int YOffset)
+void Renderer::DrawImage(Image* img, Rect* rect, int YOffset)
 {
-    SDL_Rect temp = *rect;
+    SDL_Rect temp = rect->TryParse<SDL_Rect>();
     float OffsetX = rect->w / 2;
     float OffsetY = YOffset + (rect->h / 2);
     if (CameraCentre != nullptr)
@@ -32,7 +32,7 @@ void Renderer::DrawImage(Image* img, SDL_Rect* rect, int YOffset)
         temp.x += (Globals::HALF_SCREEN_WIDTH - CameraCentre->rect.x - OffsetX);
         temp.y += (Globals::HALF_SCREEN_HEIGHT - CameraCentre->rect.y - OffsetY);
     }
-
+   
 	SDL_RenderCopy(SDLClasses::GetRenderer(), img->GetTexture(), NULL, &temp);
 }
 
